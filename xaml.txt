@@ -1,0 +1,2 @@
+<Rectangle x:Name="browse" Margin="0,1" Color="0xffffff" Width="10" Height="3" OnClick="Click_Handler">
+<Rectangle x:Name="bg" Margin="0,0" Color="0x000000" Width="160" Height="50">
