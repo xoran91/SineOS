@@ -14,14 +14,31 @@ Controls.Element = {}
 Controls.Element.__index=Controls.Element
 
 function Controls.Element:New(_x, _y, _Width, _Height)
-    local obj={x = _x, y = _y, Width = _Width, Height = _Height, ControlTemplate = {}, Parent = false, ParentControl = nil, isVisible = true}
+    local obj={x = _x, y = _y, Width = _Width, Height = _Height, HorizontalAlignment = 'Left', Parent = false, ControlTemplate = {}, ParentControl = nil, isVisible = true}
     setmetatable(obj,self)
     table.insert(Controls.handles, obj)
     return obj
 end
 
 function Controls.Element:draw()
-   
+    local x = self.x
+    local y = self.y
+    local p_x = 0
+    local p_y = 0
+    local p_w = 160
+    local p_h = 50
+    if self.Parent then
+        local p_x = self.Parent.x
+        local p_y = self.Parent.y
+        local p_w = self.Parent.Width
+        local p_h = self.Parent.Height
+    end
+    if self.HorizontalAlignment == 'Left' then
+        self.x = p_x + x
+    end    
+    if self.HorizontalAlignment == 'Center' then
+        self.x = (p_x + x) + p_w/2 - self.Width/2
+    end 
 end
 
 function Controls.Element:onClick()
@@ -57,15 +74,6 @@ end
 
 function Controls.TextBlock:draw()
   	Controls.Element.draw(self)
-        local x = self.x
-        local y = self.y
-        if self.Parent~=nil then
-            x = self.x + self.Parent.x
-            y = self.y + self.Parent.y
-            if isCentered == true then
-                x = x + self.Width / 2
-            end
-        end
   	gpu.set(x, y, self.Content)
 end 	
  --
@@ -86,7 +94,7 @@ end
 
 function Controls.Rectangle:draw()
   	Controls.Element.draw(self)
-        gpu.setBackground(self.color)
+    gpu.setBackground(self.color)
   	gpu.fill(self.x, self.y, self.Width, self.Height, ' ')
 end	
  --

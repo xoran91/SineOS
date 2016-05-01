@@ -12,8 +12,8 @@ local Rendering = require("Rendering")
 
 w,h = gpu.getResolution()
 bg = Controls.Rectangle:New(1,1,w,h,0x262626)
-Button = Controls.Button:New(60,25,12,3,0x1a1a1a,0x66ff66)
-Button.ControlTemplate.Rect = Controls.Rectangle:New(60,25,13,3,0x1a1a1a)
+Button = Controls.Button:New(1,25,12,3,0x1a1a1a,0x66ff66)
+Button.ControlTemplate.Rect = Controls.Rectangle:New(60,1,13,3,0x1a1a1a)
 Button.ControlTemplate.Rect.Parent = Button
 Button.ControlTemplate.Txt = Controls.TextBlock:New(4,1,'hello')
 Button.ControlTemplate.Txt.Parent = Button
@@ -46,7 +46,6 @@ MenuRect = Controls.Rectangle:New(1,30,30,18,0x262626)
 
 rect = Controls.Rectangle:New(9,8,17,3,0xcc00cc)
 textblock = Controls.TextBlock:New(4, 1, "Zip File!")
-textblock.isCentered = true
 textblock.Parent = rect
 textblock.ParentControl = rect
 -- System loop.
