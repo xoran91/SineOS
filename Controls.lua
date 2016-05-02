@@ -5,10 +5,6 @@ local Controls = {}
 
 Controls.handles = {}
 
-local function extended (child, parent)
-    setmetatable(child,{__index = parent}) 
-end
-
 -- class Element
 Controls.Element = {}
 Controls.Element.__index=Controls.Element
@@ -34,10 +30,10 @@ function Controls.Element:draw()
         local p_h = self.Parent.Height
     end
     if self.HorizontalAlignment == 'Left' then
-        self.x = p_x + x
+        x = p_x + x
     end    
     if self.HorizontalAlignment == 'Center' then
-        self.x = (p_x + x) + p_w/2 - self.Width/2
+        x = (p_x + x) + p_w/2 - self.Width/2
     end 
 end
 
